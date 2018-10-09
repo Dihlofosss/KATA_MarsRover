@@ -1,7 +1,5 @@
 package MarsRover;
 
-//import MarsRover.Math.Vector2D;
-
 import MarsRover.Math.Vector2D;
 
 public class Coordinates{

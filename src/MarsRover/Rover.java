@@ -18,19 +18,9 @@ public class Rover
         System.out.println("No facing vector assigned");
         return null;
     }
-/*
-    public static void main(String[] args)
-    {
-        Rover rover = new Rover();
-        rover._coordinates.setCoordinates(0,0, Directions.North);
-        rover.SetPositionDirection(rover._coordinates);
-        rover.Turn('R');
-        rover.GetPositionDirection();
-    }
-*/
+
     public void SetPositionDirection(Coordinates value)
     {
-        //SetDirection(value.nesw);
         _coordinates = value;
     }
 

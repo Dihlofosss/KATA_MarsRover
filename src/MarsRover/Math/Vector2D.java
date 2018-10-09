@@ -3,10 +3,7 @@ package MarsRover.Math;
 public class Vector2D {
     public int x,y;
 
-    public Vector2D()
-    {
-
-    }
+    public Vector2D() { }
 
     public Vector2D(int x, int y)
     {
@@ -52,7 +49,6 @@ public class Vector2D {
     @Override
     public String toString()
     {
-        //return "Vector2d[" + x + "," + y + "]";
         return "Vector2d[" + x + "," + y + "]";
     }
 }

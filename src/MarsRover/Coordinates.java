@@ -2,57 +2,50 @@ package MarsRover;
 
 import MarsRover.Math.Vector2D;
 
-public class Coordinates{
+public class Coordinates {
 
-    public enum cardinalDirection
-    {
-        North, East, South, West;
+	Vector2D position;
+	Direction direction;
+	public Coordinates() {
+	}
 
-        private static cardinalDirection[] _facing = values();
-        public cardinalDirection Next()
-        {
-            System.out.println("Turning right from "+ _facing[(this.ordinal())]);
-            return _facing[(this.ordinal()+1) % _facing.length];
-        }
+	public Coordinates(Vector2D position, Direction direction) {
+		this.position = position;
+		this.direction = direction;
+	}
 
-        public cardinalDirection Prew()
-        {
-            System.out.println("Turning left from "+ _facing[(this.ordinal())]);
-            if (this.ordinal() == 0)
-                return _facing[_facing.length-1];
-            return _facing[((this.ordinal()-1) % _facing.length)];
-        }
-    }
+	public void setPosition(Vector2D position) {
+		this.position = position;
+	}
 
-    public Vector2D position;
-    public cardinalDirection nesw;
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
 
-    public Coordinates() {    }
+	public void setCoordinates(Vector2D position, Direction direction) {
+		this.position = position;
+		this.direction = direction;
+	}
 
-    public Coordinates(Vector2D position, cardinalDirection nesw)
-    {
-        this.position = position;
-        this.nesw = nesw;
-    }
+	public Coordinates getCoordinates() {
+		return this;
+	}
 
-    public void setPosition(Vector2D position)
-    {
-        this.position = position;
-    }
+	public enum Direction {
+		North, East, South, West;
 
-    public void setNesw(cardinalDirection nesw)
-    {
-        this.nesw = nesw;
-    }
+		private static Direction[] _facing = values();
 
-    public void setCoordinates(Vector2D position, cardinalDirection nesw)
-    {
-        this.position = position;
-        this.nesw = nesw;
-    }
+		public Direction next() {
+			System.out.println("Turning right from " + _facing[(this.ordinal())]);
+			return _facing[(this.ordinal() + 1) % _facing.length];
+		}
 
-    public Coordinates getCoordinates()
-    {
-        return this;
-    }
+		public Direction prew() {
+			System.out.println("Turning left from " + _facing[(this.ordinal())]);
+			if (this.ordinal() == 0)
+				return _facing[_facing.length - 1];
+			return _facing[((this.ordinal() - 1) % _facing.length)];
+		}
+	}
 }

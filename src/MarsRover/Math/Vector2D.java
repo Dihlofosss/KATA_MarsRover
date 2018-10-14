@@ -1,7 +1,7 @@
 package MarsRover.Math;
 
 public class Vector2D {
-    public int x,y;
+    private int x,y;
 
     public Vector2D() { }
 
@@ -16,6 +16,16 @@ public class Vector2D {
         this.x = x;
         this.y = y;
         return this;
+    }
+
+    public int getX()
+    {
+        return this.x;
+    }
+
+    public int getY()
+    {
+        return this.y;
     }
 
     public Vector2D zero()

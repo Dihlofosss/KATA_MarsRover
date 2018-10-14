@@ -2,18 +2,18 @@ package MarsRover.Commands;
 
 import java.util.ArrayList;
 
-import MarsRover.Coordinates;
-import MarsRover.Move;
+import MarsRover.World.*;
 import MarsRover.Rover;
-import MarsRover.Turn;
 
-public class CommandsHandling {
+public class ControlCenter {
 
 	private Rover _rover;
+	private World _world;
 	private Coordinates _coordinates;
 
-	public CommandsHandling(Rover rover, Coordinates coordinates)
+	public ControlCenter(Rover rover, Coordinates coordinates, World world)
 	{
+		this._world = world;
 		this._rover = rover;
 		this._coordinates = coordinates;
 		this._rover.setPositionDirection(this._coordinates);
@@ -27,8 +27,10 @@ public class CommandsHandling {
 
 		turn.set_rover(this._rover);
 		move.setRover(this._rover);
+		move.setWorld(this._world);
 		for (int i = 0; i < listOfCommands.size(); i++)
 		{
+			System.out.println(_rover.toString());
 			char ch = listOfCommands.get(i);
 			switch (ch){
 				case 'F':
@@ -39,5 +41,9 @@ public class CommandsHandling {
 					turn.turn(ch); break;
 			}
 		}
+	}
+	public Rover getRover()
+	{
+		return this._rover;
 	}
 }

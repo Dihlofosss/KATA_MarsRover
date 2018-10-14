@@ -1,13 +1,16 @@
-package MarsRover;
+package MarsRover.Commands;
 
-public class Turn extends Coordinates{
+import MarsRover.Rover;
+import MarsRover.World.Coordinates;
+
+public class Turn extends Coordinates {
 	private Direction _currentDirection;
 	private Rover _rover;
 
 
 	public void turn(char direction)
 	{
-		_currentDirection = _rover.getPositionDirection().direction;
+		_currentDirection = _rover.getPositionDirection().getDirection();
 		switch (direction)
 		{
 			case 'L':
@@ -20,7 +23,7 @@ public class Turn extends Coordinates{
 
 	private void getCurrentDirection()
 	{
-		_currentDirection = this._rover.getPositionDirection().direction;
+		_currentDirection = this._rover.getPositionDirection().getDirection();
 	}
 
 	public void set_rover(Rover rover)

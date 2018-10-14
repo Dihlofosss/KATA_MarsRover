@@ -12,6 +12,6 @@ Implement commands that move the _rover forward/backward (f,b). (done)
 
 Implement commands that turn the _rover left/right (l,r). (done)
 
-Implement wrapping from one edge of the grid to another. (planets are spheres after all) (todo)
+Implement wrapping from one edge of the grid to another. (planets are spheres after all) (done)
 
 Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the _rover moves up to the last possible point and reports the obstacle. (todo)

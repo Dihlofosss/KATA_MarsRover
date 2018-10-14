@@ -1,11 +1,11 @@
-package MarsRover;
+package MarsRover.World;
 
 import MarsRover.Math.Vector2D;
 
 public class Coordinates {
 
-	Vector2D position;
-	Direction direction;
+	private Vector2D position;
+	private Direction direction;
 	public Coordinates() {
 	}
 
@@ -16,6 +16,11 @@ public class Coordinates {
 
 	public void setPosition(Vector2D position) {
 		this.position = position;
+	}
+
+	public void setPosition(int x, int y)
+	{
+		this.position.set(x,y);
 	}
 
 	public void setDirection(Direction direction) {
@@ -47,5 +52,14 @@ public class Coordinates {
 				return _facing[_facing.length - 1];
 			return _facing[((this.ordinal() - 1) % _facing.length)];
 		}
+	}
+
+	public Vector2D getPosition()
+	{
+		return this.position;
+	}
+
+	public Direction getDirection() {
+		return this.direction;
 	}
 }

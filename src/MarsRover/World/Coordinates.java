@@ -4,12 +4,13 @@ import MarsRover.Math.Vector2D;
 
 public class Coordinates {
 
-	private Vector2D position;
+	private Vector2D position ;
 	private Direction direction;
 	public Coordinates() {
 	}
 
 	public Coordinates(Vector2D position, Direction direction) {
+		//super(position);
 		this.position = position;
 		this.direction = direction;
 	}

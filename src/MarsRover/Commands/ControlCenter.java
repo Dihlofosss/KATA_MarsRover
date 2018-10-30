@@ -28,17 +28,18 @@ public class ControlCenter {
 		turn.set_rover(this._rover);
 		move.setRover(this._rover);
 		move.setWorld(this._world);
-		for (int i = 0; i < listOfCommands.size(); i++)
-		{
+		for (Character listOfCommand : listOfCommands) {
 			System.out.println(_rover.toString());
-			char ch = listOfCommands.get(i);
-			switch (ch){
+			char ch = listOfCommand;
+			switch (ch) {
 				case 'F':
 				case 'B':
-					move.move(ch); break;
+					move.move(ch);
+					break;
 				case 'L':
 				case 'R':
-					turn.turn(ch); break;
+					turn.turn(ch);
+					break;
 			}
 		}
 	}

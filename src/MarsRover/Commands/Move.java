@@ -25,82 +25,41 @@ public class Move {
 	}
 
 	public void move(char direction) {
-		Coordinates roverCoordinates = _rover.getPositionDirection();
-		System.out.println("Rover coordinates (X,Y): (" + roverCoordinates.getPosition() + ")");
-		switch (Character.toUpperCase(direction)) {
-			case 'F':
-				moveForward(roverCoordinates);
-				break;
-			case 'B':
-				moveBackward(roverCoordinates);
-				break;
+		Vector2D moveVector = getFacingVector(_rover.getPositionDirection());
+		if (direction == 'B')
+		{
+			moveVector.invert();
 		}
+		move(moveVector);
 	}
 
-	private void moveForward(Coordinates roverCoordinates)
+	private void move(Vector2D moveVector)
 	{
-		switch (roverCoordinates.getDirection())
+		Vector2D roverCurrentPosition = _rover.getPositionDirection().getPosition();
+		Vector2D nextWayPointCoordinates = new Vector2D(roverCurrentPosition.sum(moveVector));
+
+		for (Vector2D obstaclePoint: _world.getObstacleList())
 		{
-			case North:
-				if (roverCoordinates.getPosition().getY() == _world.get_maxY()) {
-					roverCoordinates.setPosition(roverCoordinates.getPosition().getX(), _world.get_minY());
-					return;
-				}
-				break;
-			case South:
-				if (roverCoordinates.getPosition().getY() == _world.get_minY()) {
-					roverCoordinates.setPosition(roverCoordinates.getPosition().getX(), _world.get_maxY());
-					return;
-				}
-				break;
-			case East:
-				if (roverCoordinates.getPosition().getX() == _world.get_maxX()) {
-					roverCoordinates.setPosition(_world.get_minX(), roverCoordinates.getPosition().getY());
-					return;
-				}
-				break;
-			case West:
-				if (roverCoordinates.getPosition().getX() == _world.get_minX()) {
-					roverCoordinates.setPosition(_world.get_maxX(), roverCoordinates.getPosition().getY());
-					return;
-				}
-				break;
+			if (obstaclePoint.equals(nextWayPointCoordinates))
+			{
+				System.out.println("Facing obstacle, can't move further");
+				return;
+			}
 		}
-
-		roverCoordinates.getPosition().sum(getFacingVector(roverCoordinates));
-	}
-
-	private void moveBackward(Coordinates roverCoordinates)
-	{
-		switch (roverCoordinates.getDirection())
-		{
-			case North:
-				if (roverCoordinates.getPosition().getY() == _world.get_minY()) {
-					roverCoordinates.setPosition(roverCoordinates.getPosition().getX(), _world.get_maxY());
-					return;
-				}
-				break;
-			case South:
-				if (roverCoordinates.getPosition().getY() == _world.get_maxY()) {
-					roverCoordinates.setPosition(roverCoordinates.getPosition().getX(), _world.get_minY());
-					return;
-				}
-				break;
-			case East:
-				if (roverCoordinates.getPosition().getX() == _world.get_minX()) {
-					roverCoordinates.setPosition(_world.get_maxX(), roverCoordinates.getPosition().getY());
-					return;
-				}
-				break;
-			case West:
-				if (roverCoordinates.getPosition().getX() == _world.get_maxX()) {
-					roverCoordinates.setPosition(_world.get_minX(), roverCoordinates.getPosition().getY());
-					return;
-				}
-				break;
+		if (nextWayPointCoordinates.getY() > _world.get_maxY()) {
+			nextWayPointCoordinates.set(roverCurrentPosition.getX(), _world.get_minY());
 		}
-
-		roverCoordinates.getPosition().subtract(getFacingVector(roverCoordinates));
+		if (nextWayPointCoordinates.getY() < _world.get_minY()) {
+			nextWayPointCoordinates.set(roverCurrentPosition.getX(), _world.get_maxY());
+		}
+		if (nextWayPointCoordinates.getX() > _world.get_maxX()) {
+			nextWayPointCoordinates.set(_world.get_minX(), roverCurrentPosition.getY());
+		}
+		if (nextWayPointCoordinates.getX() < _world.get_minX()) {
+			nextWayPointCoordinates.set(_world.get_maxX(), roverCurrentPosition.getY());
+		}
+		roverCurrentPosition.set(nextWayPointCoordinates);
+		System.out.println("Rover new coordinates " + roverCurrentPosition);
 	}
 
 	public void setRover(Rover rover)

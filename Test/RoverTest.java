@@ -1,8 +1,7 @@
 import MarsRover.Commands.*;
-import MarsRover.World.Coordinates;
+import MarsRover.World.*;
 import MarsRover.Math.Vector2D;
 import MarsRover.Rover;
-import MarsRover.World.World;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,7 +48,7 @@ public class RoverTest {
 
 	@Test
 	public void MoveBackward() {
-		_coordinates.setCoordinates(_vector2D.set(1, 2), Coordinates.Direction.South);
+		_coordinates.setCoordinates(new Vector2D(1, 2), Coordinates.Direction.South);
 		_commands = new InputCommands("B");
 		_controlCenter = new ControlCenter(_rover, _coordinates, _world);
 		_controlCenter.executeCommandsList(_commands.get_listOfCommands());
@@ -73,12 +72,13 @@ public class RoverTest {
 	public void JumpForwardOverTheWorldsEdge()
 	{
 		_world.setWorldSize(5,5);
-		_coordinates.setCoordinates(_vector2D.set(4,0), Coordinates.Direction.East);
+		_coordinates.setCoordinates(new Vector2D(4,0), Coordinates.Direction.East);
 		_commands = new InputCommands("FFFF");
 		_controlCenter = new ControlCenter(_rover, _coordinates, _world);
 		_controlCenter.executeCommandsList(_commands.get_listOfCommands());
 		_expectedCoordinates.setCoordinates(new Vector2D(-3, 0), Coordinates.Direction.East);
-		System.out.println(_controlCenter.getRover().toString());
+		//System.out.println(_controlCenter.getRover().toString());
+		System.out.println("Expected Coords: " + _expectedCoordinates.getPosition() + " Actual Coords: " + _rover.getPositionDirection().getPosition());
 		assertThat(_rover.getPositionDirection().getPosition()).isEqualToComparingFieldByField(_expectedCoordinates.getPosition());
 		assertThat(_rover.getPositionDirection().getDirection()).isEqualTo(_expectedCoordinates.getDirection());
 	}
@@ -87,12 +87,26 @@ public class RoverTest {
 	public void JumpBackwardOverTheWorldsEdge()
 	{
 		_world.setWorldSize(5,5);
-		_coordinates.setCoordinates(_vector2D.set(0,4), Coordinates.Direction.South);
+		_coordinates.setCoordinates(new Vector2D(0,4), Coordinates.Direction.South);
 		_commands = new InputCommands("BBBB");
 		_controlCenter = new ControlCenter(_rover, _coordinates, _world);
 		_controlCenter.executeCommandsList(_commands.get_listOfCommands());
 		_expectedCoordinates.setCoordinates(new Vector2D(0, -3), Coordinates.Direction.South);
 		System.out.println(_controlCenter.getRover().toString());
+		assertThat(_rover.getPositionDirection().getPosition()).isEqualToComparingFieldByField(_expectedCoordinates.getPosition());
+		assertThat(_rover.getPositionDirection().getDirection()).isEqualTo(_expectedCoordinates.getDirection());
+	}
+
+	@Test
+	public void ObstacleTest()
+	{
+		_world.setWorldSize(5,5);
+		_world.addObstacle(1,1);
+		_coordinates.setCoordinates(new Vector2D(0,0), Coordinates.Direction.North);
+		_commands = new InputCommands("FRF");
+		_controlCenter = new ControlCenter(_rover, _coordinates, _world);
+		_controlCenter.executeCommandsList(_commands.get_listOfCommands());
+		_expectedCoordinates.setCoordinates(new Vector2D(0, 1), Coordinates.Direction.East);
 		assertThat(_rover.getPositionDirection().getPosition()).isEqualToComparingFieldByField(_expectedCoordinates.getPosition());
 		assertThat(_rover.getPositionDirection().getDirection()).isEqualTo(_expectedCoordinates.getDirection());
 	}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class World {
 	private int _minX, _minY, _maxX, _maxY;
-	private ArrayList<Vector2D> obstacleList = new ArrayList<Vector2D>();
+	private ArrayList<Vector2D> obstacleList = new ArrayList<>();
 
 	public World(){}
 

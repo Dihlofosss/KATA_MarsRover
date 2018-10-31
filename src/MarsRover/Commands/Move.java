@@ -4,7 +4,7 @@ import MarsRover.Math.Vector2D;
 import MarsRover.Rover;
 import MarsRover.World.*;
 
-public class Move {
+class Move {
 
 	private Rover _rover;
 	private World _world;
@@ -24,9 +24,9 @@ public class Move {
 		return null;
 	}
 
-	public void move(char direction) {
+	void move(char direction) {
 		Vector2D moveVector = getFacingVector(_rover.getPositionDirection());
-		if (direction == 'B')
+		if (direction == 'B' && moveVector != null)
 		{
 			moveVector.invert();
 		}
@@ -36,13 +36,15 @@ public class Move {
 	private void move(Vector2D moveVector)
 	{
 		Vector2D roverCurrentPosition = _rover.getPositionDirection().getPosition();
-		Vector2D nextWayPointCoordinates = new Vector2D(roverCurrentPosition.sum(moveVector));
+		Vector2D nextWayPointCoordinates = new Vector2D().sum(roverCurrentPosition, moveVector);
 
 		for (Vector2D obstaclePoint: _world.getObstacleList())
 		{
 			if (obstaclePoint.equals(nextWayPointCoordinates))
 			{
 				System.out.println("Facing obstacle, can't move further");
+				//execute some stop shit
+				_rover.set_facingObstacle(true);
 				return;
 			}
 		}
@@ -62,12 +64,12 @@ public class Move {
 		System.out.println("Rover new coordinates " + roverCurrentPosition);
 	}
 
-	public void setRover(Rover rover)
+	void setRover(Rover rover)
 	{
 		this._rover = rover;
 	}
 
-	public void setWorld(World world)
+	void setWorld(World world)
 	{
 		this._world = world;
 	}

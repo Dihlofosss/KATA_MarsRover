@@ -103,7 +103,7 @@ public class RoverTest {
 		_world.setWorldSize(5,5);
 		_world.addObstacle(1,1);
 		_coordinates.setCoordinates(new Vector2D(0,0), Coordinates.Direction.North);
-		_commands = new InputCommands("FRF");
+		_commands = new InputCommands("FRFFFF");
 		_controlCenter = new ControlCenter(_rover, _coordinates, _world);
 		_controlCenter.executeCommandsList(_commands.get_listOfCommands());
 		_expectedCoordinates.setCoordinates(new Vector2D(0, 1), Coordinates.Direction.East);

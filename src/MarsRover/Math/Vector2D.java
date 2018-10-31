@@ -23,11 +23,10 @@ public class Vector2D{
 		this.y = y;
 	}
 
-	public Vector2D set(Vector2D vector2D)
+	public void set(Vector2D vector2D)
 	{
 		this.x = vector2D.getX();
 		this.y = vector2D.getY();
-		return this;
 	}
 
 	public int getX() {
@@ -43,12 +42,7 @@ public class Vector2D{
 		this.y = 0;
 		return this;
 	}
-/*
-	public void sum(Vector2D v1) {
-		this.x += v1.x;
-		this.y += v1.y;
-	}
-	*/
+
 	public Vector2D sum(Vector2D v1)
 	{
 		this.x += v1.x;

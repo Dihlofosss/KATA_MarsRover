@@ -9,14 +9,12 @@ public class ControlCenter {
 
 	private Rover _rover;
 	private World _world;
-	private Coordinates _coordinates;
 
 	public ControlCenter(Rover rover, Coordinates coordinates, World world)
 	{
 		this._world = world;
 		this._rover = rover;
-		this._coordinates = coordinates;
-		this._rover.setPositionDirection(this._coordinates);
+		this._rover.setPositionDirection(coordinates);
 	}
 
 	public void executeCommandsList(ArrayList<Character> listOfCommands)
@@ -28,7 +26,10 @@ public class ControlCenter {
 		turn.set_rover(this._rover);
 		move.setRover(this._rover);
 		move.setWorld(this._world);
+
 		for (Character listOfCommand : listOfCommands) {
+			if (_rover.is_facingObstacle())
+				return;
 			System.out.println(_rover.toString());
 			char ch = listOfCommand;
 			switch (ch) {

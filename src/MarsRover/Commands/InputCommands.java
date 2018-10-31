@@ -3,7 +3,7 @@ package MarsRover.Commands;
 import java.util.ArrayList;
 
 public class InputCommands {
-	private ArrayList<Character> _listOfCommands = new ArrayList<Character>();
+	private ArrayList<Character> _listOfCommands = new ArrayList<>();
 
 	public InputCommands() {
 	}
@@ -16,7 +16,7 @@ public class InputCommands {
 		stringToCommandsList(listOfCommands);
 	}
 
-	public ArrayList<Character> stringToCommandsList(String commands) {
+	private void stringToCommandsList(String commands) {
 		int listSize = commands.length();
 		this._listOfCommands.clear();
 
@@ -25,7 +25,6 @@ public class InputCommands {
 			if (ch == 'B' || ch == 'F' || ch == 'L' || ch == 'R')
 				this._listOfCommands.add(ch);
 		}
-		return this._listOfCommands;
 	}
 
 	public ArrayList<Character> get_listOfCommands() {

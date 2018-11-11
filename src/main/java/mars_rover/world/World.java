@@ -1,20 +1,21 @@
-package marsRover.world;
+package mars_rover.world;
 
-import marsRover.math.vector2D;
+import mars_rover.math.Vector2D;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class world {
+public class World {
 	private int minX;
 	private int minY;
 	private int maxX;
 	private int maxY;
 
-	private ArrayList<vector2D> obstacleList = new ArrayList<>();
+	private ArrayList<Vector2D> obstacleList = new ArrayList<>();
 
-	public world(){}
+	public World(){}
 
-	public world(int x, int y)
+	public World(int x, int y)
 	{
 		this.maxX = x;
 		this.minX = -x;
@@ -22,7 +23,7 @@ public class world {
 		this.minY = -y;
 	}
 
-	public world(int minX, int maxX, int minY, int maxY)
+	public World(int minX, int maxX, int minY, int maxY)
 	{
 		this.maxX = maxX;
 		this.minX = minX;
@@ -46,7 +47,7 @@ public class world {
 		this.minY = minY;
 	}
 
-	public world getWorldSize()
+	public World getWorldSize()
 	{
 		return this;
 	}
@@ -70,10 +71,10 @@ public class world {
 
 	public void addObstacle(int x, int y)
 	{
-		obstacleList.add(new vector2D(x, y));
+		obstacleList.add(new Vector2D(x, y));
 	}
 
-	public ArrayList<vector2D> getObstacleList() {
+	public List<Vector2D> getObstacleList() {
 		return obstacleList;
 	}
 

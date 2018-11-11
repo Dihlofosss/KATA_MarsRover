@@ -1,7 +1,8 @@
-package MarsRover.Math;
+package mars_rover.math;
 
-public class Vector2D{
-	private int x, y;
+public class Vector2D {
+	private int x;
+	private int y;
 
 
 	public Vector2D() {
@@ -77,5 +78,17 @@ public class Vector2D{
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Vector2D && x == (((Vector2D)obj).x) && y == (((Vector2D)obj).y);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int hashX = this.x;
+		int hashY = this.y;
+		if (hashX == 0)
+			hashX++;
+		if (hashY == 0)
+			hashY++;
+		return (hashX * hashY);
 	}
 }

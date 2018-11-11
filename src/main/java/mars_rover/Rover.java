@@ -1,23 +1,23 @@
-package marsRover;
+package mars_rover;
 
-import marsRover.math.vector2D;
-import marsRover.world.coordinates;
+import mars_rover.math.Vector2D;
+import mars_rover.world.Coordinates;
 
-public class rover {
-	private coordinates coordinates;
+public class Rover {
+	private Coordinates coordinates;
 	private boolean facingObstacle = false;
 
-	public void setPositionDirection(coordinates value) {
+	public void setPositionDirection(Coordinates value) {
 		coordinates = value;
 	}
 
-	public void setPositionDirection(vector2D position, coordinates.Direction direction)
+	public void setPositionDirection(Vector2D position, Coordinates.Direction direction)
 	{
 		this.coordinates.setPosition(position);
 		this.coordinates.setDirection(direction);
 	}
 
-	public void setDirection(coordinates.Direction direction)
+	public void setDirection(Coordinates.Direction direction)
 	{
 		this.coordinates.setDirection(direction);
 	}
@@ -26,7 +26,7 @@ public class rover {
 		this.facingObstacle = facingObstacle;
 	}
 
-	public coordinates getPositionDirection() {
+	public Coordinates getPositionDirection() {
 		return this.coordinates;
 	}
 

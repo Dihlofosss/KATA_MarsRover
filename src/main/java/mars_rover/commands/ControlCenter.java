@@ -1,16 +1,16 @@
-package marsRover.commands;
+package mars_rover.commands;
 
 import java.util.List;
 
-import marsRover.world.*;
-import marsRover.rover;
+import mars_rover.world.*;
+import mars_rover.Rover;
 
-public class controlCenter {
+public class ControlCenter {
 
-	private rover rover;
-	private world world;
+	private Rover rover;
+	private World world;
 
-	public controlCenter(rover rover, coordinates coordinates, world world)
+	public ControlCenter(Rover rover, Coordinates coordinates, World world)
 	{
 		this.world = world;
 		this.rover = rover;
@@ -19,8 +19,8 @@ public class controlCenter {
 
 	public void executeCommandsList(List<Character> listOfCommands)
 	{
-		move move = new move();
-		turn turn = new turn();
+		Move move = new Move();
+		Turn turn = new Turn();
 
 		turn.setRover(this.rover);
 		move.setRover(this.rover);
@@ -37,15 +37,15 @@ public class controlCenter {
 					break;
 				case 'L':
 				case 'R':
-					turn.turn(ch);
+					turn.turnDirection(ch);
 					break;
 				default:
-					System.err.println("Unknown command move/turn");
+					System.err.println("Unknown command Move/turnDirection");
 					break;
 			}
 		}
 	}
-	public rover getRover()
+	public Rover getRover()
 	{
 		return this.rover;
 	}

@@ -1,47 +1,47 @@
-package marsRover.commands;
+package mars_rover.commands;
 
-import marsRover.math.vector2D;
-import marsRover.rover;
-import marsRover.world.*;
+import mars_rover.math.Vector2D;
+import mars_rover.Rover;
+import mars_rover.world.*;
 
-class move {
+class Move {
 
-	private rover rover;
-	private world world;
+	private Rover rover;
+	private World world;
 
-	private vector2D getFacingVector(coordinates direction) {
+	private Vector2D getFacingVector(Coordinates direction) {
 		switch (direction.getDirection()) {
 			case NORTH:
-				return new vector2D(0, 1);
+				return new Vector2D(0, 1);
 			case EAST:
-				return new vector2D(1, 0);
+				return new Vector2D(1, 0);
 			case SOUTH:
-				return new vector2D(0, -1);
+				return new Vector2D(0, -1);
 			case WEST:
-				return new vector2D(-1, 0);
+				return new Vector2D(-1, 0);
 		}
 		return null;
 	}
 
 	void move(char direction) {
-		vector2D moveVector = getFacingVector(rover.getPositionDirection());
+		Vector2D moveVector = getFacingVector(rover.getPositionDirection());
 		if (direction == 'B' && moveVector != null)
 		{
 			moveVector.invert();
 		}
-		move(moveVector);
+		moveWithVector(moveVector);
 	}
 
-	private void move(vector2D moveVector)
+	private void moveWithVector(Vector2D moveVector)
 	{
-		vector2D roverCurrentPosition = rover.getPositionDirection().getPosition();
-		vector2D nextWayPointCoordinates = new vector2D().sum(roverCurrentPosition, moveVector);
+		Vector2D roverCurrentPosition = rover.getPositionDirection().getPosition();
+		Vector2D nextWayPointCoordinates = new Vector2D().sum(roverCurrentPosition, moveVector);
 
-		for (vector2D obstaclePoint: world.getObstacleList())
+		for (Vector2D obstaclePoint: world.getObstacleList())
 		{
 			if (obstaclePoint.equals(nextWayPointCoordinates))
 			{
-				System.err.println("Facing obstacle, can't move further");
+				System.err.println("Facing obstacle, can't Move further");
 				rover.setFacingObstacle(true);
 				return;
 			}
@@ -61,12 +61,12 @@ class move {
 		roverCurrentPosition.set(nextWayPointCoordinates);
 	}
 
-	void setRover(rover rover)
+	void setRover(Rover rover)
 	{
 		this.rover = rover;
 	}
 
-	void setWorld(world world)
+	void setWorld(World world)
 	{
 		this.world = world;
 	}

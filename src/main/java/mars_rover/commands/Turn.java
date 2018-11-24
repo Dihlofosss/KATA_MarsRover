@@ -3,9 +3,11 @@ package mars_rover.commands;
 import mars_rover.Rover;
 import mars_rover.world.Coordinates;
 
+import java.util.logging.Logger;
+
 class Turn extends Coordinates {
 	private Rover rover;
-
+	private Logger logger = Logger.getLogger(getClass().getName());
 
 	void turnDirection(char direction)
 	{
@@ -17,7 +19,7 @@ class Turn extends Coordinates {
 			case 'R':
 				currentDirection = currentDirection.next(); break;
 			default:
-				System.err.println("Unknown turnDirection command");
+				logger.info("Unknown turnDirection command " + direction);
 				break;
 		}
 		this.rover.setDirection(currentDirection);

@@ -4,8 +4,10 @@ import mars_rover.math.Vector2D;
 import mars_rover.Rover;
 import mars_rover.world.*;
 
-class Move {
+import java.util.logging.Logger;
 
+class Move {
+	private Logger logger = Logger.getLogger(getClass().getName());
 	private Rover rover;
 	private World world;
 
@@ -41,7 +43,7 @@ class Move {
 		{
 			if (obstaclePoint.equals(nextWayPointCoordinates))
 			{
-				System.err.println("Facing obstacle, can't Move further");
+				logger.info("Facing obstacle, can't Move further");
 				rover.setFacingObstacle(true);
 				return;
 			}

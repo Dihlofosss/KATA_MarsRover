@@ -1,6 +1,5 @@
 package mars_rover;
 
-import mars_rover.math.Vector2D;
 import mars_rover.world.Coordinates;
 
 public class Rover {
@@ -9,12 +8,6 @@ public class Rover {
 
 	public void setPositionDirection(Coordinates value) {
 		coordinates = value;
-	}
-
-	public void setPositionDirection(Vector2D position, Coordinates.Direction direction)
-	{
-		this.coordinates.setPosition(position);
-		this.coordinates.setDirection(direction);
 	}
 
 	public void setDirection(Coordinates.Direction direction)
@@ -32,10 +25,5 @@ public class Rover {
 
 	public boolean isFacingObstacle() {
 		return facingObstacle;
-	}
-
-	@Override
-	public String toString() {
-		return coordinates.getPosition() + " " + coordinates.getDirection();
 	}
 }

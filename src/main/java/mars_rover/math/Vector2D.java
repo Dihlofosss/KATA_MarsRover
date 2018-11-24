@@ -13,12 +13,6 @@ public class Vector2D {
 		this.y = y;
 	}
 
-	public Vector2D(Vector2D vector2D)
-	{
-		this.x = vector2D.getX();
-		this.y = vector2D.getY();
-	}
-
 	public void set(int x, int y) {
 		this.x = x;
 		this.y = y;

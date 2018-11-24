@@ -6,9 +6,6 @@ import java.util.ArrayList;
 public class InputCommands {
 	private ArrayList<Character> listOfCommands = new ArrayList<>();
 
-	public InputCommands() {
-	}
-
 	public InputCommands(String listOfCommands) {
 		stringToCommandsList(listOfCommands);
 	}

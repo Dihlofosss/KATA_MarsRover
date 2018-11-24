@@ -1,6 +1,7 @@
 package mars_rover.commands;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import mars_rover.world.*;
 import mars_rover.Rover;
@@ -9,6 +10,8 @@ public class ControlCenter {
 
 	private Rover rover;
 	private World world;
+
+	private Logger logger = Logger.getAnonymousLogger();
 
 	public ControlCenter(Rover rover, Coordinates coordinates, World world)
 	{
@@ -40,13 +43,9 @@ public class ControlCenter {
 					turn.turnDirection(ch);
 					break;
 				default:
-					System.err.println("Unknown command Move/turnDirection");
+					logger.info("Unknown command Move/turnDirection " + ch);
 					break;
 			}
 		}
-	}
-	public Rover getRover()
-	{
-		return this.rover;
 	}
 }

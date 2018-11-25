@@ -2,8 +2,12 @@ package mars_rover.commands;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InputCommands {
+	private Logger logger = Logger.getLogger(getClass().getName());
+
 	private ArrayList<Character> listOfCommands = new ArrayList<>();
 
 	public InputCommands(String listOfCommands) {
@@ -22,6 +26,8 @@ public class InputCommands {
 			char ch = Character.toUpperCase(commands.charAt(i));
 			if (ch == 'B' || ch == 'F' || ch == 'L' || ch == 'R')
 				this.listOfCommands.add(ch);
+			else
+				logger.log(Level.WARNING,"Ignoring unknown input command: " + ch);
 		}
 	}
 

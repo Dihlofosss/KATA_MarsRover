@@ -2,6 +2,7 @@ package mars_rover.commands;
 
 import mars_rover.Rover;
 import mars_rover.world.Coordinates;
+import mars_rover.world.Direction;
 
 import java.util.logging.Logger;
 

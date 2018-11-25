@@ -1,12 +1,16 @@
 package mars_rover.world;
 
 import mars_rover.math.Vector2D;
+import mars_rover.world.Direction;
 
 public class Coordinates {
 
 	private Vector2D position ;
 	private Direction direction;
+
 	public Coordinates() {
+		position = new Vector2D(0,0);
+		direction = Direction.NORTH;
 	}
 
 	public Coordinates(Vector2D position, Direction direction) {
@@ -34,22 +38,6 @@ public class Coordinates {
 
 	public Coordinates getCoordinates() {
 		return this;
-	}
-
-	public enum Direction {
-		NORTH, EAST, SOUTH, WEST;
-
-		private static Direction[] facing = values();
-
-		public Direction next() {
-			return facing[(this.ordinal() + 1) % facing.length];
-		}
-
-		public Direction prew() {
-			if (this.ordinal() == 0)
-				return facing[facing.length - 1];
-			return facing[((this.ordinal() - 1) % facing.length)];
-		}
 	}
 
 	public Vector2D getPosition()

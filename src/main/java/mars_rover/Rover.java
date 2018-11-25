@@ -1,6 +1,7 @@
 package mars_rover;
 
 import mars_rover.world.Coordinates;
+import mars_rover.world.Direction;
 
 public class Rover {
 	private Coordinates coordinates;
@@ -10,7 +11,7 @@ public class Rover {
 		coordinates = value;
 	}
 
-	public void setDirection(Coordinates.Direction direction)
+	public void setDirection(Direction direction)
 	{
 		this.coordinates.setDirection(direction);
 	}

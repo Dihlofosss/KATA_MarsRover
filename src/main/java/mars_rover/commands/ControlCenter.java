@@ -1,6 +1,7 @@
 package mars_rover.commands;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import mars_rover.world.*;
@@ -11,7 +12,7 @@ public class ControlCenter {
 	private Rover rover;
 	private World world;
 
-	private Logger logger = Logger.getAnonymousLogger();
+	private Logger logger = Logger.getLogger(getClass().getName());
 
 	public ControlCenter(Rover rover, Coordinates coordinates, World world)
 	{
@@ -31,7 +32,10 @@ public class ControlCenter {
 
 		for (Character listOfCommand : listOfCommands) {
 			if (rover.isFacingObstacle())
+			{
+				world.eraseObstacleList();
 				return;
+			}
 			char ch = listOfCommand;
 			switch (ch) {
 				case 'F':
@@ -43,7 +47,7 @@ public class ControlCenter {
 					turn.turnDirection(ch);
 					break;
 				default:
-					logger.info("Unknown command Move/turnDirection " + ch);
+					logger.log(Level.WARNING, "Unknown command: " + ch);
 					break;
 			}
 		}

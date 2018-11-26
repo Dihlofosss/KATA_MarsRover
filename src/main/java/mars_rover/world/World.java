@@ -51,6 +51,10 @@ public class World {
 		obstacleList.add(new Vector2D(x, y));
 	}
 
+	public void addObstacle (Vector2D obstacle){
+		obstacleList.add(obstacle);
+	}
+
 	public List<Vector2D> getObstacleList() {
 		return obstacleList;
 	}

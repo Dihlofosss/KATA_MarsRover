@@ -25,7 +25,7 @@ public class TestsToXML {
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
-			Element rootElement = doc.createElementNS("Tests","Mars_Rover");
+			Element rootElement = doc.createElement("Mars_Rover");
 
 			doc.appendChild(rootElement);
 
@@ -36,7 +36,7 @@ public class TestsToXML {
 			rootElement.appendChild(addNewTest(doc,"Turn And Move","3,3","3,2/-1,1", "FRFL","0,0,N","1,1,N"));
 			rootElement.appendChild(addNewTest(doc,"Jump Forward Over The Worlds Edge", "5,5", "4,4","FFFF","4,0,E","-3,0,E"));
 			rootElement.appendChild(addNewTest(doc,"Jump Backward Over The Worlds Edge", "5,5", "4,4","BBBB","0,4,S","0,-3,S"));
-			rootElement.appendChild(addNewTest(doc,"Hit An Obstacle","5,5","1,1", "FRFFFF","0,0,N","o,1,E"));
+			rootElement.appendChild(addNewTest(doc,"Hit An Obstacle","5,5","1,1", "FRFFFF","0,0,N","0,1,E"));
 
 			transformer = tFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
@@ -67,8 +67,8 @@ public class TestsToXML {
 
 	private static Node addSingleElement(Document doc, Element element, String type, String value)
 	{
-		Element node = doc.createElement(type);
-		node.appendChild(doc.createTextNode(value));
+		Element node = doc.createElement("Option");
+		node.setAttribute(type,value);
 		return node;
 	}
 }

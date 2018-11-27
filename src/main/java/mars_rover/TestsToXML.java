@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -39,6 +40,8 @@ public class TestsToXML {
 			rootElement.appendChild(addNewTest(doc,"Hit An Obstacle","5,5","1,1", "FRFFFF","0,0,N","0,1,E"));
 
 			transformer = tFactory.newTransformer();
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			DOMSource source = new DOMSource(doc);
 
 			StreamResult file = new StreamResult(new File(xmlFilePath));

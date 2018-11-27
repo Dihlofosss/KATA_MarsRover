@@ -12,8 +12,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestsToXML {
+
+	private static Logger logger = Logger.getLogger("XML Exporter");
+
 	public static void main(String[] args)
 	{
 		String xmlFilePath = "xml/MarsRover_ListOfTest.xml";
@@ -26,7 +31,7 @@ public class TestsToXML {
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
-			Element rootElement = doc.createElement("Mars_Rover");
+			Element rootElement = doc.createElement("Mars_Rover_Tests");
 
 			doc.appendChild(rootElement);
 
@@ -48,7 +53,7 @@ public class TestsToXML {
 			transformer.transform(source, file);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, "Something happens", e);
 		}
 	}
 
@@ -59,16 +64,16 @@ public class TestsToXML {
 		Element element = doc.createElement("Test");
 		element.setAttribute("Name",testName);
 
-		element.appendChild(addSingleElement(doc, element, "World_Size", worldSize));
-		element.appendChild(addSingleElement(doc, element, "Obstacles", obstacles));
-		element.appendChild(addSingleElement(doc, element, "Commands", commands));
-		element.appendChild(addSingleElement(doc, element, "Initial_Rover_Coordinates", initialCoordinates));
-		element.appendChild(addSingleElement(doc, element, "Expected_Rover_Coordinates", expectedCoordinates));
+		element.appendChild(addSingleElement(doc, "World_Size", worldSize));
+		element.appendChild(addSingleElement(doc, "Obstacles", obstacles));
+		element.appendChild(addSingleElement(doc, "Commands", commands));
+		element.appendChild(addSingleElement(doc, "Initial_Rover_Coordinates", initialCoordinates));
+		element.appendChild(addSingleElement(doc, "Expected_Rover_Coordinates", expectedCoordinates));
 
 		return element;
 	}
 
-	private static Node addSingleElement(Document doc, Element element, String type, String value)
+	private static Node addSingleElement(Document doc, String type, String value)
 	{
 		Element node = doc.createElement("Option");
 		node.setAttribute(type,value);

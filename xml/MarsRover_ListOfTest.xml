@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Mars_Rover>
+<Mars_Rover_Tests>
   <Test Name="Turn Right">
     <Option World_Size="3,3"/>
     <Option Obstacles="2,2"/>
@@ -56,4 +56,4 @@
     <Option Initial_Rover_Coordinates="0,0,N"/>
     <Option Expected_Rover_Coordinates="0,1,E"/>
   </Test>
-</Mars_Rover>
+</Mars_Rover_Tests>

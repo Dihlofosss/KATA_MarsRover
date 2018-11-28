@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Mars_Rover_Tests>
-  <Test Name="Turn Right">
+  <Test ID="1" Name="Turn Right">
     <Option World_Size="3,3"/>
     <Option Obstacles="2,2"/>
     <Option Commands="R"/>
     <Option Initial_Rover_Coordinates="0,0,W"/>
     <Option Expected_Rover_Coordinates="0,0,N"/>
   </Test>
-  <Test Name="Turn Left">
+  <Test ID="2" Name="Turn Left">
     <Option World_Size="4,4"/>
     <Option Obstacles="1,3"/>
     <Option Commands="L"/>
     <Option Initial_Rover_Coordinates="0,0,N"/>
     <Option Expected_Rover_Coordinates="0,0,W"/>
   </Test>
-  <Test Name="Move Forward">
+  <Test ID="3" Name="Move Forward">
     <Option World_Size="3,3"/>
     <Option Obstacles="3,3"/>
     <Option Commands="F"/>
     <Option Initial_Rover_Coordinates="0,0,N"/>
     <Option Expected_Rover_Coordinates="0,1,N"/>
   </Test>
-  <Test Name="Move Backward">
+  <Test ID="4" Name="Move Backward">
     <Option World_Size="3,3"/>
     <Option Obstacles="3,2"/>
     <Option Commands="B"/>
     <Option Initial_Rover_Coordinates="1,2,S"/>
     <Option Expected_Rover_Coordinates="1,3,S"/>
   </Test>
-  <Test Name="Turn And Move">
+  <Test ID="5" Name="Turn And Move">
     <Option World_Size="3,3"/>
     <Option Obstacles="3,2/-1,1"/>
     <Option Commands="FRFL"/>
     <Option Initial_Rover_Coordinates="0,0,N"/>
     <Option Expected_Rover_Coordinates="1,1,N"/>
   </Test>
-  <Test Name="Jump Forward Over The Worlds Edge">
+  <Test ID="6" Name="Jump Forward Over The Worlds Edge">
     <Option World_Size="5,5"/>
     <Option Obstacles="4,4"/>
     <Option Commands="FFFF"/>
     <Option Initial_Rover_Coordinates="4,0,E"/>
     <Option Expected_Rover_Coordinates="-3,0,E"/>
   </Test>
-  <Test Name="Jump Backward Over The Worlds Edge">
+  <Test ID="7" Name="Jump Backward Over The Worlds Edge">
     <Option World_Size="5,5"/>
     <Option Obstacles="4,4"/>
     <Option Commands="BBBB"/>
     <Option Initial_Rover_Coordinates="0,4,S"/>
     <Option Expected_Rover_Coordinates="0,-3,S"/>
   </Test>
-  <Test Name="Hit An Obstacle">
+  <Test ID="8" Name="Hit An Obstacle">
     <Option World_Size="5,5"/>
     <Option Obstacles="1,1"/>
     <Option Commands="FRFFFF"/>
